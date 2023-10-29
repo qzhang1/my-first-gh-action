@@ -18,18 +18,23 @@ jobs:
       - name: Run Unit Tests
         run: npm test
 
-  deploy:
+  build-and-deploy:
+    needs: test
+    # handling multiple instances at once
+    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
-      - name: Get Code
+      - name: Checkout
         uses: actions/checkout@v4
       - name: Install NodeJS
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Install Node dependencies
-        run: npm ci
-      - name: Build
-        run: npm run build
+      - name: Install dependencies and Build
+        run: |
+          npm ci
+          npm run build
       - name: Deploy
-        run: echo "Deploy completed"
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
