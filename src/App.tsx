@@ -28,7 +28,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <h2>Betty Chen big 5head</h2>
+      <h2>
+        <strong>My First GH Action Page</strong>
+      </h2>
     </>
   );
 }
