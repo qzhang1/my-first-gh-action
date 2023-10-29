@@ -18,5 +18,5 @@ test("Expects count to increase by 1 when counter button is clicked", async () =
   render(<App />);
   const button = screen.getByRole("button");
   await userEvent.click(button);
-  expect(screen.getByText("count is 1")).not.toBeInTheDocument();
+  expect(screen.getByText("count is 1")).toBeInTheDocument();
 });
